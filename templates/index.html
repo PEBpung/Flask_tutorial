@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
 {% block head %}
-
+<title>Task Master</title>
 {% endblock %}
 
 {% block body %}
 <div class="content">
-    <h1 style="text-align: center;">Task Master</h1>
-
+    <h1 style="text-align: center">Task Master</h1>
+    {% if tasks|length < 1 %}
+    <h4 style="text-align: center">There are no tasks. Create one below!</h4>
+    {% else %}
     <table>
         <tr>
             <th>Task</th>
@@ -16,20 +18,23 @@
         </tr>
         {% for task in tasks %}
             <tr>
-                <tb>{{ task.content }}</tb>
-                <tb>{{ task.date_created.date() }}</tb>
-                <tb>
+                <td>{{ task.content }}</td>
+                <td>{{ task.date_created.date() }}</td>
+                <td>
                     <a href="/delete/{{task.id}}">Delete</a>
                     <br>
-                    <a href="">Update</a>
-                </tb>
+                    <a href="/update/{{task.id}}">Update</a>
+                </td>
             </tr>
         {% endfor %}
     </table>
+    {% endif %}
 
-    <form action="/" method="POST">
-        <input type="text" name="content" id="content">
-        <input type="submit" value="Add Task">
-    </form>
+    <div class="form">
+        <form action="/" method="POST">
+            <input type="text" name="content" id="content">
+            <input type="submit" value="Add Task">
+        </form>
+    </div>
 </div>
 {% endblock %}
