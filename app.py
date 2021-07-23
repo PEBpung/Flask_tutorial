@@ -2,7 +2,6 @@ from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
-print('코드 수정')
 app = Flask(__name__)
 # ///는 상대 경로, ////는 절대 경로
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
